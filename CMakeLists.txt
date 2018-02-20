@@ -25,12 +25,12 @@ set (PKGVERSION 0.1)
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
 set (DOLLAR "$")
 
-set (VAPIDIRS 
+set (VAPIDIRS
 	--vapidir='${CMAKE_SOURCE_DIR}'
 	--vapidir='${CMAKE_SOURCE_DIR}/vapi'
 )
 set (DEFAULT_VALA_OPTIONS
-	--pkg libcouchbasev3
+	--pkg libcouchbase
 	${VAPIDIRS}
 	--enable-experimental
 	--target-glib=2.32
@@ -53,11 +53,11 @@ SET( CORE_DEPS_CFLAGS_ALL
 	-I${COUCHBASE_INCLUDE_DIR}
 )
 
-SET( CORE_DEPS_LIBRARY_DIRS 
+SET( CORE_DEPS_LIBRARY_DIRS
 	${CORE_DEPS_LIBRARY_DIRS}
 	${COUCHBASE_LIBRARY_DIR})
 
-SET( CORE_DEPS_LIBRARIES 
+SET( CORE_DEPS_LIBRARIES
 	${CORE_DEPS_LIBRARIES}
 	couchbase)
 

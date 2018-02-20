@@ -58,7 +58,7 @@ namespace Couchbase {
 	/**
 	 * This class represents the connection to the Couchbase server, as well as
 	 * the current state of the connection to the server.
-	 * 
+	 *
 	 * Example use:
 	 * {{{
 	 *   Couchbase.Client client;
@@ -155,19 +155,23 @@ namespace Couchbase {
 		 * @param connectString Host or hosts to connect to. This can be a
 		 *         single URI in the form [[couchbase://localhost:8091]], or a
 		 *         list of host:port, separated by ';'.
-		 * @param username Username or bucket name
+		 * @param username Bucket name
+		 * @param username Username
 		 * @param password Password for the given bucket
 		 */
-		public Client( string connectString, string? username = null, string? password = null ) throws ClientError {
+		public Client( string connectString, string? bucket = null, string? username = null, string? password = null ) throws ClientError {
 
 			// Set connection options
 			var connect_options = LibCouchbase.ConnectionOptions();
-			connect_options.v3_connstr = connectString;
+			connect_options.host = connectString;
+			if ( bucket != null ) {
+				connect_options.bucket = username;
+			}
 			if ( username != null ) {
-				connect_options.v3_username = username;
+				connect_options.user = username;
 			}
 			if ( password != null ) {
-				connect_options.v3_passwd = password;
+				connect_options.passwd = password;
 			}
 
 			// Set IO on connection options
